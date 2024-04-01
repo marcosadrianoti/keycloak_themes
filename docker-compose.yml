@@ -5,7 +5,7 @@ services:
   postgres:
     image: postgres
     volumes:
-    # Volumes do postgres tem que ser num hd formatado pelo linux, por isto /home/*
+    # Volumes do postgres tem que ser num hd formatado pelo linux.
       - /home/marcos_adriano/www/postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak
