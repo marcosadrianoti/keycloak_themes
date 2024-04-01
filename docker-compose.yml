@@ -6,7 +6,7 @@ services:
     image: postgres
     volumes:
     # Volumes do postgres tem que ser num hd formatado pelo linux, por isto /home/*
-      - /home/postgres_data:/var/lib/postgresql/data
+      - /home/marcos_adriano/www/postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak
       POSTGRES_USER: keycloak
@@ -33,8 +33,9 @@ services:
     command:
       - start-dev
     volumes:
-      - /mnt/6E6CF9236CF8E6AD/www/keycloak/themes:/opt/keycloak/themes
-      - /opt/keycloak/themes/Vitriny/node_modules # Apagar o conteúdo do node_modules no container
+      - /home/marcos_adriano/www/keycloak/themes:/opt/keycloak/themes
+      # - /mnt/6E6CF9236CF8E6AD/www/keycloak/themes:/opt/keycloak/themes
+      # - /opt/keycloak/themes/Vitriny/node_modules # Apagar o conteúdo do node_modules no container
     networks:
       - backend
 
