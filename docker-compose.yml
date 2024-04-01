@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres
+    volumes:
+    # Volumes do postgres tem que ser num hd formatado pelo linux, por isto /home/*
+      - /home/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+
+  keycloak:
+    image: quay.io/keycloak/keycloak
+    ports:
+      - "8080:8080"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+    depends_on:
+      - postgres
+    command:
+      - start-dev
+    volumes:
+      - /mnt/6E6CF9236CF8E6AD/www/keycloak/themes:/opt/keycloak/themes
+      - /opt/keycloak/themes/Vitriny/node_modules # Apagar o conteúdo do node_modules no container
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+
+volumes:
+  postgres_data:
+      driver: local
+
+# Construir uma imagem e dar o nome keycloak-verstand
+# docker build -t keycloak-verstand .
+# Levantar o container
+# docker compose up -d
