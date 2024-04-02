@@ -3,10 +3,10 @@
     <#if section = "header">
     <div class="flex flex-col">
         <div class="client-logo"></div>
-        <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold" >Fazer login</span>
+        <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold">${msg("loginAccountTitle")}</span>
     </div>
 
-        <#--  ${msg("loginAccountTitle")}  -->
+        
     <#elseif section = "form">
         <div id="kc-form">
           <div id="kc-form-wrapper">
@@ -16,7 +16,7 @@
                         <#--  <div class="${properties.kcFormGroupClass!}">  -->
                         <div class="flex flex-col mb-4">
                             <#--  <label for="username" class="${properties.kcLabelClass!}"><#if !realm.loginWithEmailAllowed>${msg("username")}<#elseif !realm.registrationEmailAsUsername>${msg("usernameOrEmail")}<#else>${msg("email")}</#if></label>  -->
-                            <label for="username" class="font-Jakarta font-medium text-sm">E-mail</label>
+                            <label for="username" class="font-Jakarta font-medium text-sm">${msg("email")}</label>
 
                             <#--  <input tabindex="2" id="username" class="${properties.kcInputClass!}" name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="username"
                                    aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
@@ -38,7 +38,7 @@
                     <#--  <div class="${properties.kcFormGroupClass!}">  -->
                     <div class="flex flex-col">
                         <#--  <label for="password" class="${properties.kcLabelClass!}">${msg("password")}</label>  -->
-                        <label for="username" class="font-Jakarta font-medium text-sm">Senha</label>
+                        <label for="username" class="font-Jakarta font-medium text-sm">${msg("password")}</label>
 
                         <div class="${properties.kcInputGroup!}">
                             <#--  <input tabindex="3" id="password" class="${properties.kcInputClass!}" name="password" type="password" autocomplete="current-password"
@@ -67,7 +67,7 @@
                         <div id="kc-form-options">
                             <#if realm.rememberMe && !usernameHidden??>
                                 <div class="checkbox">
-                                    <label>
+                                    <label class="font-Jakarta text-sm">
                                         <#if login.rememberMe??>
                                             <input tabindex="5" id="rememberMe" name="rememberMe" type="checkbox" checked> ${msg("rememberMe")}
                                         <#else>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="${properties.kcFormOptionsWrapperClass!}">
                                 <#if realm.resetPasswordAllowed>
-                                    <span><a tabindex="6" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></span>
+                                    <span class="font-bold"><a tabindex="6" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></span>
                                 </#if>
                             </div>
 
@@ -95,7 +95,7 @@
                             id="kc-login"
                             type="submit"
                             <#--  value="${msg("doLogIn")}"/  -->
-                            value="Entrar"
+                            value="${msg("doLogIn")}"
                           >
                       </div>
                 </form>
@@ -103,30 +103,36 @@
             </#if>
             </div>
         </div>
+        
         <script type="module" src="${url.resourcesPath}/js/passwordVisibility.js"></script>
-    <#elseif section = "info" >
+    <#--  <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
             <div id="kc-registration-container">
                 <div id="kc-registration">
                     <span>${msg("noAccount")} <a tabindex="8"
-                                                 href="${url.registrationUrl}">${msg("doRegister")}</a></span>
+                    href="${url.registrationUrl}">${msg("doRegister")}</a></span>
                 </div>
             </div>
-        </#if>
+        </#if>  -->
     <#elseif section = "socialProviders" >
         <#if realm.password && social.providers??>
-            <div id="kc-social-providers" class="${properties.kcFormSocialAccountSectionClass!}">
+            <div id="kc-social-providers" >
                 <hr/>
-                <h2>${msg("identity-provider-login-label")}</h2>
 
                 <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                     <#list social.providers as p>
-                        <li>
-                            <a id="social-${p.alias}" class="${properties.kcFormSocialAccountListButtonClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
+                        <li class="flex items-center justify-center font-Jakarta text-sm">
+                            <a id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
                                     type="button" href="${p.loginUrl}">
                                 <#if p.iconClasses?has_content>
-                                    <i class="${properties.kcCommonLogoIdP!} ${p.iconClasses!}" aria-hidden="true"></i>
-                                    <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text">${p.displayName!}</span>
+                                    <div class="flex items-center justify-center gap-5">
+                                        <h2>${msg("identity-provider-login-label")}</h2>
+                                        <div class="flex items-center justify-center gap-5">
+                                            <img src="${url.resourcesPath}/img/google.svg" alt="google">
+                                            <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text font-bold">${p.displayName!}</span>
+                                        </div>
+                                    </div>
+                                    <#--  <i class="${properties.kcCommonLogoIdP!} ${p.iconClasses!}" aria-hidden="true"></i>  -->
                                 <#else>
                                     <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
                                 </#if>
@@ -136,8 +142,12 @@
                 </ul>
             </div>
         </#if>
+          
     </#if>
-
+    <#--  <div class="flex flex-col items-center justify-center w-full">
+        <a class="no-underline hover:no-underline hover:text-black mt-8 w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
+        href="${url.registrationUrl}">${msg("noAccount")}</a>
+    </div>  -->
 
 </@layout.registrationLayout>
     

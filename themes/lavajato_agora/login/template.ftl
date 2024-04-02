@@ -169,26 +169,35 @@
 
           <#nested "socialProviders">
 
-          <#if displayInfo>
+          <#--  <#if displayInfo>
               <div id="kc-info" class="${properties.kcSignUpClass!}">
                   <div id="kc-info-wrapper" class="${properties.kcInfoAreaWrapperClass!}">
                       <#nested "info">
                   </div>
               </div>
-          </#if>
+          </#if>  -->
         </div>
       </div>
 
     </div>
-    <div class="flex flex-col items-center justify-center w-full">
-        <input 
+                  <#--  <span>TESTE</span>  -->
+    <#--  <div class="flex flex-col items-center justify-center w-full">
+        <#--  <input 
             class="mt-8 mx-auto w-64 bg-white rounded-md h-10 font-Jakarta text-sm font-medium text-black"
             name="login"
             id="kc-login"
             type="submit"
-            <#--  value="${msg("doLogIn")}"/  -->
-            value="Criar uma conta"
-        >
+            value="${msg("doLogIn")}"
+        >  -->
+        <#--  <div class="mt-8 mx-auto w-64 bg-white rounded-md h-10 place-content-center font-Jakarta text-sm font-medium text-black">  -->
+        <#--  <div class="mb-4 bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-black">  -->
+                    <#--  <a class="no-underline hover:no-underline hover:text-black mt-8 w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
+                    href="${url.registrationUrl}">${msg("noAccount")}</a>  -->
+                <#--  </div>  -->
+    <#--  </div>  -->  -->
+    <div class="flex flex-col items-center justify-center w-full">
+        <a class="no-underline hover:no-underline hover:text-black mt-8 w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
+        href="${url.registrationUrl}">${msg("noAccount")}</a>
     </div>
   </div>
 </body>
