@@ -1,11 +1,3 @@
-div.client-logo {
-  background-image: url(../img/logo.png);
-  background-repeat: no-repeat;
-  height: 41px;
-  width: 168px;
-  /* margin: 0 auto; */
-}
-
 .login-pf body {
   background: url("../img/fundo.png") no-repeat center center fixed;
   background-size: cover;

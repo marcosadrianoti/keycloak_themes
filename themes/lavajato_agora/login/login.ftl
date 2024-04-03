@@ -5,7 +5,7 @@
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
             <div class="flex flex-col">
-                <div class="client-logo"></div>
+                <img class="h-10 w-40" src="${url.resourcesPath}/img/logo.png" alt="logo">
                 <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold">${msg("loginAccountTitle")}</span>
             </div>
             
@@ -46,8 +46,9 @@
                             </div>
 
                             <#if usernameHidden?? && messagesPerField.existsError('username','password')>
-                                <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
-                                        ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
+                                <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite"
+                                >
+                                    ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
                                 </span>
                             </#if>
 
