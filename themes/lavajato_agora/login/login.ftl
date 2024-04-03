@@ -1,6 +1,6 @@
 <#import "template.ftl" as layout>
 
-<div class="flex flex-col h-screen items-center justify-center">
+<div class="flex flex-col h-screen items-center justify-center border border-orange-500">
 
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
@@ -37,12 +37,12 @@
                                 <input tabindex="3" id="password" class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9" name="password" type="password" autocomplete="current-password"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
-                                <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg("showPassword")}"
+                                <#--  <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg("showPassword")}"
                                         aria-controls="password" data-password-toggle tabindex="4"
                                         data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
                                         data-label-show="${msg('showPassword')}" data-label-hide="${msg('hidePassword')}">
                                     <i class="${properties.kcFormPasswordVisibilityIconShow!}" aria-hidden="true"></i>
-                                </button>
+                                </button>  -->
                             </div>
 
                             <#if usernameHidden?? && messagesPerField.existsError('username','password')>
@@ -124,9 +124,9 @@
         </#if>
     </@layout.registrationLayout>
 
-    <div class="flex flex-col items-center justify-center mt-8 w-full">
+    <div class="flex flex-col mt-8 items-center justify-center w-full">
         <a
-            class="border border-slate-950 no-underline hover:no-underline hover:text-black w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
+            class="no-underline hover:no-underline hover:text-black w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
             href="${url.registrationUrl}"
         >
             ${msg("noAccount")}
