@@ -59,8 +59,8 @@
 
 
 <body >
-<div class="flex flex-col  items-center justify-center w-full">
-    <div class="mx-auto p-8 max-w-lg rounded-lg border border-gray-200 bg-white w-1/3">
+<div class="flex flex-col items-center justify-center w-full">
+    <div class="mx-auto p-8 max-w-lg rounded-lg bg-white w-1/3">
         <header class="mb-0">
             <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                 <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
