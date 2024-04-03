@@ -18,7 +18,7 @@
                             <div class="flex flex-col mb-4">
                                 <label for="username" class="font-Jakarta font-medium text-sm">${msg("email")}</label>
                                 <input tabindex="2" id="username"
-                                class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9" name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="username"
+                                    class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9" name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="username"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
 
