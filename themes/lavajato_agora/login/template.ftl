@@ -58,20 +58,9 @@
     </script>
 
 
-<#--  <body class="${properties.kcBodyClass!}">  -->
-<body class="">
-        <#--  <h1 class="text-3xl font-poppins text-cyan-300"> TESTE </h1>  -->
-<#--  <div class="${properties.kcLoginClass!}  h-screen ">  -->
-<div class="flex flex-col min-h-screen items-center justify-center w-full">
-    <#--  <div id="kc-header" class="${properties.kcHeaderClass!}">
-    <div>teste</div>  -->
-    <#--  <a class="text-3xl bg-blue-500 text-red-400" href="#" onclick="redirectToExternalPage()">About App</a>
-        <div id="kc-header-wrapper"
-             class="${properties.kcHeaderWrapperClass!}">${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}</div>  -->
-    <#--  </div>  -->
-    <#--  <div class="${properties.kcFormCardClass!} p-8">  -->
+<body >
+<div class="flex flex-col items-center justify-center w-full">
     <div class="mx-auto p-8 max-w-lg rounded-lg border border-gray-200 bg-white w-1/3">
-        <#--  <header class="${properties.kcFormHeaderClass!}"> -->
         <header class="mb-0">
             <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                 <div class="${properties.kcLocaleMainClass!}" id="kc-locale">
@@ -138,7 +127,6 @@
         </#if>
       </header>
       <div id="kc-content">
-        <#--  <div id="kc-content-wrapper" class="mt-0">  -->
         <div>
 
           <#-- App-initiated actions should not see warning messages about the need to complete the action -->
@@ -169,6 +157,7 @@
 
           <#nested "socialProviders">
 
+          <#--  This code was substituted by 'button' for user create a account at login page  -->
           <#--  <#if displayInfo>
               <div id="kc-info" class="${properties.kcSignUpClass!}">
                   <div id="kc-info-wrapper" class="${properties.kcInfoAreaWrapperClass!}">
@@ -176,28 +165,10 @@
                   </div>
               </div>
           </#if>  -->
+
         </div>
       </div>
 
-    </div>
-                  <#--  <span>TESTE</span>  -->
-    <#--  <div class="flex flex-col items-center justify-center w-full">
-        <#--  <input 
-            class="mt-8 mx-auto w-64 bg-white rounded-md h-10 font-Jakarta text-sm font-medium text-black"
-            name="login"
-            id="kc-login"
-            type="submit"
-            value="${msg("doLogIn")}"
-        >  -->
-        <#--  <div class="mt-8 mx-auto w-64 bg-white rounded-md h-10 place-content-center font-Jakarta text-sm font-medium text-black">  -->
-        <#--  <div class="mb-4 bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-black">  -->
-                    <#--  <a class="no-underline hover:no-underline hover:text-black mt-8 w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
-                    href="${url.registrationUrl}">${msg("noAccount")}</a>  -->
-                <#--  </div>  -->
-    <#--  </div>  -->  -->
-    <div class="flex flex-col items-center justify-center w-full">
-        <a class="no-underline hover:no-underline hover:text-black mt-8 w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
-        href="${url.registrationUrl}">${msg("noAccount")}</a>
     </div>
   </div>
 </body>
