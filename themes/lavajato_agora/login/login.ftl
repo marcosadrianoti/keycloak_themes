@@ -100,16 +100,14 @@
 
                     <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                         <#list social.providers as p>
-                            <li class="flex items-center justify-center font-Jakarta text-sm">
-                                <a id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
+                            <li class="flex items-center justify-center font-Jakarta text-sm gap-5">
+                                <span class="text-sm font-medium">${msg("identity-provider-login-label")}</span>
+                                <a class="no-underline hover:no-underline " id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
                                         type="button" href="${p.loginUrl}">
                                     <#if p.iconClasses?has_content>
-                                        <div class="flex items-center justify-center gap-5">
-                                            <h2>${msg("identity-provider-login-label")}</h2>
-                                            <div class="flex items-center justify-center gap-5">
-                                                <img src="${url.resourcesPath}/img/google.svg" alt="google">
-                                                <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text font-bold">${p.displayName!}</span>
-                                            </div>
+                                        <div class="h-12 px-4 bg-white flex items-center justify-center rounded-lg border border-gray-200 gap-2">
+                                            <img src="${url.resourcesPath}/img/google.svg" alt="google">
+                                            <span class="font-bold">${p.displayName!}</span>
                                         </div>
                                     <#else>
                                         <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
