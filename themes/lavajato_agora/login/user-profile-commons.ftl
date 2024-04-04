@@ -20,6 +20,7 @@
 						<#assign groupHeaderText=group.name!"">
 					</#if>
 					<div class="${properties.kcContentWrapperClass!}">
+					
 						<label id="header-${attribute.group.name}" class="${kcFormGroupHeader!}">${groupHeaderText}</label>
 					</div>
 	

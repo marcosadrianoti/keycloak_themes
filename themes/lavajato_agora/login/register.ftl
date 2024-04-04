@@ -3,9 +3,38 @@
 <#import "register-commons.ftl" as registerCommons>
 
 <div class="flex flex-col h-screen items-center justify-center font-Jakarta font-semibold text-base">
-    <@layout.registrationLayout displayMessage=messagesPerField.exists('global') displayRequiredFields=true; section>
+        
+    <@layout.registrationLayout displayMessage=messagesPerField.exists('global') displayRequiredFields=true displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
-            ${msg("registerTitle")}
+            <h1 class="text-xl font-semibold">${msg("registerTitle")}</h1>
+            <#if realm.password && social.providers??>
+                <div id="kc-social-providers" >
+                    <hr/>
+                    <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
+                        <#list social.providers as p>
+                            <li class="flex items-center justify-center font-Jakarta text-sm">
+                                <a id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
+                                        type="button" href="${p.loginUrl}">
+                                    <#if p.iconClasses?has_content>
+                                        <div class="flex items-center justify-center gap-5">
+                                            <h2>${msg("doRegisterWithGoogle")}</h2>
+                                            <div class="flex items-center justify-center gap-5">
+                                                <img src="${url.resourcesPath}/img/google.svg" alt="google">
+                                                <span class="${properties.kcFormSocialAccountNameClass!} kc-social-icon-text font-bold">${p.displayName!}</span>
+                                            </div>
+                                        </div>
+                                    <#else>
+                                        <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
+                                    </#if>
+                                </a>
+                            </li>
+                        </#list>
+                    </ul>
+                </div>
+            </#if>
+
+<div class="py-3 flex items-center text-xs uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:before:border-gray-600 dark:after:border-gray-600">ou</div>
+        
         <#elseif section = "form">
             <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
 
