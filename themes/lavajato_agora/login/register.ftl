@@ -42,7 +42,7 @@
                         <#if passwordRequired?? && (attribute.name == 'username' || (attribute.name == 'email' && realm.registrationEmailAsUsername))>
                             <div class="${properties.kcFormGroupClass!}">
                                 <div class="${properties.kcLabelWrapperClass!}">
-                                    <label for="password" class="${properties.kcLabelClass!}">${msg("password")}</label> *
+                                    <label for="password" class="${properties.kcLabelClass!}">${msg("passwordCreateNew")}</label> *
                                 </div>
                                 <div class="${properties.kcInputWrapperClass!}">
                                     <div class="${properties.kcInputGroup!}">
@@ -113,18 +113,18 @@
                 </#if>
 
                 <div class="${properties.kcFormGroupClass!}">
-                    <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
-                        <div class="${properties.kcFormOptionsWrapperClass!}">
-                            <span><a href="${url.loginUrl}">${kcSanitize(msg("backToLogin"))?no_esc}</a></span>
-                        </div>
-                    </div>
-
                     <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
                         <input
                             class="bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                             type="submit"
                             value="${msg("doRegister")}"
                             />
+                    </div>
+                    <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
+                        <div class="${properties.kcFormOptionsWrapperClass!}">
+                            <span>${msg("doHaveAnAccount")}</span>
+                            <span><a href="${url.loginUrl}">${kcSanitize(msg("makeLogin"))?no_esc}</a></span>
+                        </div>
                     </div>
                 </div>
             </form>
