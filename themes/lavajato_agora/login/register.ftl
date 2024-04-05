@@ -37,9 +37,15 @@
             <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
 
                 <@userProfileCommons.userProfileFormFields; callback, attribute>
-                    <#if callback = "afterField">
+                <#--  <@userProfileCommons.displayAttribute; callback, attribute>  -->
+                    <#--  <span>callback é ${callback} </span>  -->
+                    <#if callback == "afterField">
                     <#-- render password fields just under the username or email (if used as username) -->
-                        <#if passwordRequired?? && (attribute.name == 'username' || (attribute.name == 'email' && realm.registrationEmailAsUsername))>
+                        <#if passwordRequired?? && (attribute.name == 'email' || (attribute.name == 'email' && realm.registrationEmailAsUsername))>
+                        <#--  <#if attribute.name == 'lastName'>  -->
+
+                            <#--  <span>${attribute.name} se for lastName</span>  -->
+
                             <div class="${properties.kcFormGroupClass!}">
                                 <div class="${properties.kcLabelWrapperClass!}">
                                     <label for="password" class="${properties.kcLabelClass!}">${msg("passwordCreateNew")}</label> *
@@ -100,6 +106,7 @@
                             </div>
                         </#if>
                     </#if>
+                <#--  Os campos nome de usuário, nome, sobrenome e email estão no arquivo user-profile-commons.ftl  -->
                 </@userProfileCommons.userProfileFormFields>
 
                 <@registerCommons.termsAcceptance/>
@@ -118,7 +125,7 @@
                             class="bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                             type="submit"
                             value="${msg("doRegister")}"
-                            />
+                        />
                     </div>
                     <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
                         <div class="${properties.kcFormOptionsWrapperClass!}">

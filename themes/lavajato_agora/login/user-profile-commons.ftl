@@ -1,8 +1,5 @@
-<#macro userProfileFormFields>
-	<#assign currentGroup="">
-	
-	<#list profile.attributes as attribute>
-
+<#macro displayAttribute attribute>
+		
 		<#assign group = (attribute.group)!"">
 		<#if group != currentGroup>
 			<#assign currentGroup=group>
@@ -12,6 +9,7 @@
 					data-${key}="${value}"
 				</#list>
 				>
+				
 	
 					<#assign groupDisplayHeader=group.displayHeader!"">
 					<#if groupDisplayHeader != "">
@@ -36,6 +34,7 @@
 		</#if>
 
 		<#nested "beforeField" attribute>
+
 		<div class="${properties.kcFormGroupClass!}">
 			<div class="${properties.kcLabelWrapperClass!}">
 				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
@@ -56,7 +55,104 @@
 				</#if>
 			</div>
 		</div>
+
+		<#--  <#nested "afterField" attribute>  -->
+	<#--  </#if>  -->
+	
+</#macro>
+
+<#macro userProfileFormFields_new>
+	<#assign currentGroup="">
+	<#list profile.attributes as attribute>
+		<#if attribute.name == "username"> 
+			<@displayAttribute attribute=attribute/>
+			<#nested "afterField" attribute>
+		</#if>
+	</#list>
+	<#list profile.attributes as attribute>
+		<#if attribute.name == "firstName"> 
+			<@displayAttribute attribute=attribute/>
+			<#nested "afterField" attribute>
+		</#if>
+	</#list>
+	<#list profile.attributes as attribute>
+		<#if attribute.name == "lastName"> 
+			<@displayAttribute attribute=attribute/>
+			<#nested "afterField" attribute>
+		</#if>
+	</#list>
+	<#list profile.attributes as attribute>
+		<#if attribute.name == "email"> 
+			<@displayAttribute attribute=attribute/>
+			<#nested "afterField" attribute>
+		</#if>
+	</#list>
+	<#list profile.html5DataAnnotations?keys as key>
+		<script type="module" src="${url.resourcesPath}/js/${key}.js"></script>
+	</#list>
+</#macro>
+
+<#macro userProfileFormFields>
+	<#assign currentGroup="">
+	<#list profile.attributes as attribute>
+		<#assign group = (attribute.group)!"">
+		<#if group != currentGroup>
+		
+			<#assign currentGroup=group>
+			<#if currentGroup != "">
+				<div class="${properties.kcFormGroupClass!}"
+				<#list group.html5DataAnnotations as key, value>
+					data-${key}="${value}"
+				</#list>
+				>
+				
+	
+					<#assign groupDisplayHeader=group.displayHeader!"">
+					<#if groupDisplayHeader != "">
+						<#assign groupHeaderText=advancedMsg(groupDisplayHeader)!group>
+					<#else>
+						<#assign groupHeaderText=group.name!"">
+					</#if>
+					<div class="${properties.kcContentWrapperClass!}">
+					
+						<label id="header-${attribute.group.name}" class="${kcFormGroupHeader!}">${groupHeaderText}</label>
+					</div>
+	
+					<#assign groupDisplayDescription=group.displayDescription!"">
+					<#if groupDisplayDescription != "">
+						<#assign groupDescriptionText=advancedMsg(groupDisplayDescription)!"">
+						<div class="${properties.kcLabelWrapperClass!}">
+							<label id="description-${group.name}" class="${properties.kcLabelClass!}">${groupDescriptionText}</label>
+						</div>
+					</#if>
+				</div>
+			</#if>
+		</#if>
+		<#nested "beforeField" attribute>
+
+		<div class="${properties.kcFormGroupClass!}">
+			<div class="${properties.kcLabelWrapperClass!}">
+				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
+				<#if attribute.required>*</#if>
+			</div>
+			<div class="${properties.kcInputWrapperClass!}">
+				<#if attribute.annotations.inputHelperTextBefore??>
+					<div class="${properties.kcInputHelperTextBeforeClass!}" id="form-help-text-before-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextBefore))?no_esc}</div>
+				</#if>
+				<@inputFieldByType attribute=attribute/>
+				<#if messagesPerField.existsError('${attribute.name}')>
+					<span id="input-error-${attribute.name}" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
+						${kcSanitize(messagesPerField.get('${attribute.name}'))?no_esc}
+					</span>
+				</#if>
+				<#if attribute.annotations.inputHelperTextAfter??>
+					<div class="${properties.kcInputHelperTextAfterClass!}" id="form-help-text-after-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextAfter))?no_esc}</div>
+				</#if>
+			</div>
+		</div>
+
 		<#nested "afterField" attribute>
+
 	</#list>
 
 	<#list profile.html5DataAnnotations?keys as key>
@@ -89,7 +185,12 @@
 </#macro>
 
 <#macro inputTag attribute value>
-	<input type="<@inputTagType attribute=attribute/>" id="${attribute.name}" name="${attribute.name}" value="${(value!'')}" class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full""
+	<input
+		type="<@inputTagType attribute=attribute/>"
+		id="${attribute.name}"
+		name="${attribute.name}"
+		value="${(value!'')}"
+		class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
 		aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
 		<#if attribute.readOnly>disabled</#if>
 		<#if attribute.autocomplete??>autocomplete="${attribute.autocomplete}"</#if>
