@@ -31,7 +31,7 @@
                 </div>
             </#if>
 
-<div class="py-5 flex items-center text-xs uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:before:border-gray-600 dark:after:border-gray-600">ou</div>
+            <div class="py-5 flex items-center text-xs uppercase before:flex-1 before:border-t before:border-blue-500 before:me-6 after:flex-1 after:border-t after:border-blue-500 after:ms-6 dark:before:border-blue-500 dark:after:border-blue-500">ou</div>
         
         <#elseif section = "form">
             <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
