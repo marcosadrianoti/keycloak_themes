@@ -6,35 +6,66 @@
         <#if section = "header">
             <div class="flex flex-col">
                 <img class="h-10 w-40" src="${url.resourcesPath}/img/logo.png" alt="logo">
-                <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold">${msg("loginAccountTitle")}</span>
+                <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold">
+                    ${msg("loginAccountTitle")}
+                </span>
             </div>
             
         <#elseif section = "form">
             <div id="kc-form" >
             <div id="kc-form-wrapper" >
                 <#if realm.password>
-                    <form  id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
+                    <form
+                        id="kc-form-login"
+                        onsubmit="login.disabled = true; return true;"
+                        action="${url.loginAction}"
+                        method="post">
                         <#if !usernameHidden??>
                             <div class="flex flex-col mb-4">
-                                <label for="username" class="font-Jakarta font-medium text-sm">${msg("email")}</label>
-                                <input tabindex="2" id="username"
-                                    class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9" name="username" value="${(login.username!'')}"  type="text" autofocus autocomplete="username"
+                                <label
+                                    for="username"
+                                    class="font-Jakarta font-medium text-sm">${msg("email")}
+                                </label>
+                                <input
+                                    tabindex="2"
+                                    id="username"
+                                    class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 px-3 h-9"
+                                    name="username"
+                                    value="${(login.username!'')}"
+                                    type="text"
+                                    autofocus
+                                    autocomplete="username"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
 
                                 <#if messagesPerField.existsError('username','password')>
-                                    <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
-                                            ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
+                                    <span
+                                        id="input-error"
+                                        class="${properties.kcInputErrorMessageClass!}"
+                                        aria-live="polite"
+                                    >
+                                        ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
                                     </span>
                                 </#if>
 
                             </div>
                         </#if>
                         <div class="flex flex-col">
-                            <label for="username" class="font-Jakarta font-medium text-sm">${msg("password")}</label>
+                            <label
+                                for="username"
+                                class="font-Jakarta font-medium text-sm"
+                            >
+                                ${msg("password")}
+                            </label>
 
                             <div class="${properties.kcInputGroup!}">
-                                <input tabindex="3" id="password" class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9" name="password" type="password" autocomplete="current-password"
+                                <input
+                                    tabindex="3"
+                                    id="password"
+                                    class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 px-3 h-9"
+                                    name="password"
+                                    type="text"
+                                    autocomplete="current-password"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
                                 <#--  <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg("showPassword")}"
@@ -46,7 +77,10 @@
                             </div>
 
                             <#if usernameHidden?? && messagesPerField.existsError('username','password')>
-                                <span id="input-error" class="${properties.kcInputErrorMessageClass!}" aria-live="polite"
+                                <span
+                                    id="input-error"
+                                    class="${properties.kcInputErrorMessageClass!}"
+                                    aria-live="polite"
                                 >
                                     ${kcSanitize(messagesPerField.getFirstError('username','password'))?no_esc}
                                 </span>
@@ -60,9 +94,22 @@
                                     <div class="checkbox">
                                         <label class="font-Jakarta text-sm">
                                             <#if login.rememberMe??>
-                                                <input tabindex="5" id="rememberMe" name="rememberMe" type="checkbox" checked> ${msg("rememberMe")}
+                                                <input
+                                                    tabindex="5"
+                                                    id="rememberMe"
+                                                    name="rememberMe"
+                                                    type="checkbox"
+                                                    checked
+                                                >
+                                                    ${msg("rememberMe")}
                                             <#else>
-                                                <input tabindex="5" id="rememberMe" name="rememberMe" type="checkbox"> ${msg("rememberMe")}
+                                                <input
+                                                    tabindex="5"
+                                                    id="rememberMe"
+                                                    name="rememberMe"
+                                                    type="checkbox"
+                                                >
+                                                    ${msg("rememberMe")}
                                             </#if>
                                         </label>
                                     </div>
@@ -70,15 +117,30 @@
                                 </div>
                                 <div class="${properties.kcFormOptionsWrapperClass!}">
                                     <#if realm.resetPasswordAllowed>
-                                        <span class="font-bold"><a class="no-underline hover:no-underline" tabindex="6" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></span>
+                                        <span class="font-bold">
+                                            <a
+                                                class="no-underline hover:no-underline"
+                                                tabindex="6"
+                                                href="${url.loginResetCredentialsUrl}"
+                                            >
+                                                ${msg("doForgotPassword")}
+                                            </a>
+                                        </span>
                                     </#if>
                                 </div>
 
                         </div>
 
                         <div class="mt-0">
-                            <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                            <input tabindex="7"
+                            <input
+                                type="hidden"
+                                id="id-hidden-input"
+                                name="credentialId"
+                                <#if auth.selectedCredential?has_content>
+                                    value="${auth.selectedCredential}"
+                                </#if>/>
+                            <input
+                                tabindex="7"
                                 class="mb-4 bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                                 name="login"
                                 id="kc-login"
@@ -92,7 +154,10 @@
                 </div>
             </div>
             
-            <script type="module" src="${url.resourcesPath}/js/passwordVisibility.js"></script>
+            <script
+                type="module"
+                src="${url.resourcesPath}/js/passwordVisibility.js">
+            </script>
         <#elseif section = "socialProviders" >
             <#if realm.password && social.providers??>
                 <div id="kc-social-providers" >
@@ -102,15 +167,26 @@
                         <#list social.providers as p>
                             <li class="flex items-center justify-center font-Jakarta text-sm gap-5">
                                 <span class="text-sm font-medium">${msg("identity-provider-login-label")}</span>
-                                <a class="no-underline hover:no-underline" id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
-                                        type="button" href="${p.loginUrl}">
+                                <a
+                                    class="no-underline hover:no-underline" id="social-${p.alias}"
+                                    <#if social.providers?size gt 3>
+                                        ${properties.kcFormSocialAccountGridItem!}
+                                    </#if>"
+                                    type="button" href="${p.loginUrl}"
+                                >
                                     <#if p.iconClasses?has_content>
-                                        <div class="h-12 px-4 bg-white flex items-center justify-center rounded-lg border border-gray-200 gap-2">
-                                            <img src="${url.resourcesPath}/img/google.svg" alt="google">
+                                        <div
+                                            class="h-12 px-4 bg-white flex items-center justify-center rounded-lg border border-gray-200 gap-2">
+                                            <img
+                                                src="${url.resourcesPath}/img/google.svg"
+                                                alt="google"
+                                            >
                                             <span class="font-bold">${p.displayName!}</span>
                                         </div>
                                     <#else>
-                                        <span class="${properties.kcFormSocialAccountNameClass!}">${p.displayName!}</span>
+                                        <span class="${properties.kcFormSocialAccountNameClass!}">
+                                            ${p.displayName!}
+                                        </span>
                                     </#if>
                                 </a>
                             </li>
@@ -124,7 +200,8 @@
 
     <div class="flex flex-col mt-8 items-center justify-center w-full">
         <a
-            class="no-underline hover:no-underline hover:text-black w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium" tabindex="8"
+            tabindex="8"
+            class="no-underline hover:no-underline hover:text-black w-64 bg-white rounded-md h-10 content-center text-center font-Jakarta text-sm font-medium"
             href="${url.registrationUrl}"
         >
             ${msg("noAccount")}
