@@ -13,7 +13,7 @@
                     <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                         <#list social.providers as p>
                             <li class="flex items-center justify-center font-Jakarta text-sm gap-5">
-                                <span class="text-sm font-medium">${msg("identity-provider-login-label")}</span>
+                                <span class="text-sm font-medium">${msg("identity-provider-create-label")}</span>
                                 <a class="no-underline hover:no-underline " id="social-${p.alias}"  <#if social.providers?size gt 3>${properties.kcFormSocialAccountGridItem!}</#if>"
                                         type="button" href="${p.loginUrl}">
                                     <#if p.iconClasses?has_content>
