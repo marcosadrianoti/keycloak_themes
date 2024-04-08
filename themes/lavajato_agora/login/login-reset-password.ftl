@@ -46,7 +46,7 @@
                                 class="${properties.kcInputErrorMessageClass!}"
                                 aria-live="polite"
                             >
-                                ${kcSanitize(messagesPerField.get('username'))?no_esc}
+                                ${msg("missingEmailMessage")}
                             </span>
                         </#if>
                     </div>

@@ -51,6 +51,7 @@
             );
         </script>
     </#if>
+    <#--  Script para redirecionar usando botão  -->
     <script>
         function redirectToExternalPage() {
             window.location.href = "https://www.verstand.tech/";
