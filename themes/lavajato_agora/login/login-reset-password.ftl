@@ -3,28 +3,35 @@
 <div class="flex h-screen font-Jakarta">
     <@layout.registrationLayout displayInfo=true displayMessage=!messagesPerField.existsError('username'); section>
         <#if section = "header">
-            ${msg("emailForgotTitle")}
+            <div class="flex flex-col gap-4">
+                <h1 class="text-xl font-semibold">
+                    ${msg("emailForgotTitle")}
+                </h1>
+                <span class="text-sm font-normal text-gray-500 mb-4">
+                    ${msg("emailResetPasswordMessage")}
+                </span>
+            </div>
         <#elseif section = "form">
             <form
                 id="kc-reset-password-form"
-                class="${properties.kcFormClass!}"
+                class="w-full mb-0"
                 action="${url.loginAction}"
                 method="post"
             >
                 <div class="${properties.kcFormGroupClass!}">
-                    <div class="${properties.kcLabelWrapperClass!}">
+                    <div class="">
                         <label
                             for="username"
-                            class="${properties.kcLabelClass!}">
+                            class="text-sm font-medium w-full">
                                 <#if !realm.loginWithEmailAllowed>${msg("username")}
                                     <#elseif !realm.registrationEmailAsUsername>
-                                        ${msg("usernameOrEmail")}
-                                    <#else>
+                                        <#--  ${msg("usernameOrEmail")}
+                                    <#else>  -->
                                         ${msg("email")}
                                 </#if>
                         </label>
                     </div>
-                    <div class="${properties.kcInputWrapperClass!}">
+                    <div class="">
                         <input
                             type="text"
                             id="username"
@@ -44,31 +51,28 @@
                         </#if>
                     </div>
                 </div>
-                <div class="${properties.kcFormGroupClass!} ${properties.kcFormSettingClass!}">
-                    <div
-                        id="kc-form-options"
-                        class="${properties.kcFormOptionsClass!}"
-                    >
-                        <div class="${properties.kcFormOptionsWrapperClass!}">
-                            <span>
-                                <a href="${url.loginUrl}">
-                                    ${kcSanitize(msg("backToLogin"))?no_esc}
-                                </a>
-                            </span>
-                        </div>
-                    </div>
+                <div class="mb-0">
                     <div
                         id="kc-form-buttons"
-                        class="${properties.kcFormButtonsClass!}"
+                        class=""
                     >
-                        <#--  <input class="bg-emerald-500 ${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" type="submit" value="${msg("doSubmit")}"/>  -->
                         <input
                             class="bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                             type="submit"
                             value="${msg("doSubmit")}"
                         />
+                    <hr class="w-full border-t border-gray-200 mt-4 mb-4" />
                     </div>
                 </div>
+                    <div class="flex flex-col items-center justify-center w-full mt-4">
+                        <a
+                            tabindex="8"
+                            class="no-underline hover:no-underline hover:text-black w-full bg-white rounded-md border border-gray-200 h-10 content-center text-center font-Jakarta text-sm font-medium"
+                            href="${url.loginUrl}"
+                        >
+                            ${msg("backToLogin")}
+                        </a>
+                    </div>
             </form>
         <#elseif section = "info" >
             <#if realm.duplicateEmailsAllowed>

@@ -134,7 +134,7 @@
                     <div id="kc-form-options" class="mb-0">
                         <#--  <div class="${properties.kcFormOptionsWrapperClass!}">  -->
                         <div class="flex flex-col items-center justify-center">
-                            <span class="text-gray-500">${msg("doHaveAnAccount")}</span>
+                            <span class="font-Jakarta text-sm font-medium text-gray-500">${msg("doHaveAnAccount")}</span>
                             <div class="flex flex-col items-center justify-center w-full mt-4">
                                 <a
                                     tabindex="8"

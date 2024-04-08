@@ -767,9 +767,9 @@ p.instruction {
   border-color: rgba(230, 230, 230, 0.5);
 }
 
-h1#kc-page-title {
+/* h1#kc-page-title {
   margin-top: 10px;
-}
+} */
 
 #kc-locale ul {
   background-color: var(--pf-global--BackgroundColor--100);
