@@ -2,7 +2,7 @@
 <#import "user-profile-commons.ftl" as userProfileCommons>
 <#import "register-commons.ftl" as registerCommons>
 
-<div class="flex flex-col min-h-screen items-center justify-center font-Jakarta font-semibold text-base">
+<div class="flex flex-col min-h-screen items-center justify-center mb-0 font-Jakarta font-semibold text-base">
         
     <@layout.registrationLayout displayMessage=messagesPerField.exists('global') displayRequiredFields=true displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
@@ -34,7 +34,7 @@
             <div class="py-5 flex items-center text-xs uppercase before:flex-1 before:border-t before:border-blue-500 before:me-6 after:flex-1 after:border-t after:border-blue-500 after:ms-6 dark:before:border-blue-500 dark:after:border-blue-500">ou</div>
         
         <#elseif section = "form">
-            <form id="kc-register-form" class="${properties.kcFormClass!}" action="${url.registrationAction}" method="post">
+            <form id="kc-register-form" class="${properties.kcFormClass!} mb-0" action="${url.registrationAction}" method="post">
 
                 <@userProfileCommons.userProfileFormFields; callback, attribute>
                 <#--  <@userProfileCommons.displayAttribute; callback, attribute>  -->
@@ -48,7 +48,7 @@
 
                             <div class="${properties.kcFormGroupClass!}">
                                 <div class="${properties.kcLabelWrapperClass!}">
-                                    <label for="password" class="${properties.kcLabelClass!}">${msg("passwordCreateNew")}</label> *
+                                    <label for="password" class="${properties.kcLabelClass!}">${msg("passwordCreateNew")}</label>
                                 </div>
                                 <div class="${properties.kcInputWrapperClass!}">
                                     <div class="${properties.kcInputGroup!}">
@@ -78,7 +78,7 @@
                             <div class="${properties.kcFormGroupClass!}">
                                 <div class="${properties.kcLabelWrapperClass!}">
                                     <label for="password-confirm"
-                                        class="${properties.kcLabelClass!}">${msg("passwordConfirm")}</label> *
+                                        class="${properties.kcLabelClass!}">${msg("passwordConfirm")}</label>
                                 </div>
                                 <div class="${properties.kcInputWrapperClass!}">
                                     <div class="${properties.kcInputGroup!}">
@@ -119,18 +119,31 @@
                     </div>
                 </#if>
 
-                <div class="${properties.kcFormGroupClass!}">
-                    <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">
+                <#--  <div class="${properties.kcFormGroupClass!}">  -->
+                <div class="mb-0">
+                    <#--  <div id="kc-form-buttons" class="${properties.kcFormButtonsClass!}">  -->
+                    <div id="kc-form-buttons" class="mt-0">
                         <input
                             class="bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                             type="submit"
                             value="${msg("doRegister")}"
                         />
                     </div>
-                    <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">
-                        <div class="${properties.kcFormOptionsWrapperClass!}">
-                            <span>${msg("doHaveAnAccount")}</span>
-                            <span><a href="${url.loginUrl}">${kcSanitize(msg("makeLogin"))?no_esc}</a></span>
+                    <hr class="w-full border-t border-gray-200 mt-4 mb-4" />
+                    <#--  <div id="kc-form-options" class="${properties.kcFormOptionsClass!}">  -->
+                    <div id="kc-form-options" class="mb-0">
+                        <#--  <div class="${properties.kcFormOptionsWrapperClass!}">  -->
+                        <div class="flex flex-col items-center justify-center">
+                            <span class="text-gray-500">${msg("doHaveAnAccount")}</span>
+                            <div class="flex flex-col items-center justify-center w-full mt-4">
+                                <a
+                                    tabindex="8"
+                                    class="no-underline hover:no-underline hover:text-black w-full bg-white rounded-md border border-gray-200 h-10 content-center text-center font-Jakarta text-sm font-medium"
+                                    href="${url.loginUrl}"
+                                >
+                                    ${msg("makeLogin")}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

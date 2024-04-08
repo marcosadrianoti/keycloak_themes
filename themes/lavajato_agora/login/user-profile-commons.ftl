@@ -38,7 +38,7 @@
 		<div class="${properties.kcFormGroupClass!}">
 			<div class="${properties.kcLabelWrapperClass!}">
 				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
-				<#if attribute.required>*</#if>
+				<#--  <#if attribute.required>*</#if>  -->
 			</div>
 			<div class="${properties.kcInputWrapperClass!}">
 				<#if attribute.annotations.inputHelperTextBefore??>
@@ -133,7 +133,7 @@
 		<div class="${properties.kcFormGroupClass!}">
 			<div class="${properties.kcLabelWrapperClass!}">
 				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
-				<#if attribute.required>*</#if>
+				<#--  <#if attribute.required>*</#if>  -->
 			</div>
 			<div class="${properties.kcInputWrapperClass!}">
 				<#if attribute.annotations.inputHelperTextBefore??>
