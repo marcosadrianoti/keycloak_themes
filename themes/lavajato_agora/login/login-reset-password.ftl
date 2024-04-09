@@ -22,13 +22,14 @@
                     <div class="">
                         <label
                             for="username"
-                            class="text-sm font-medium w-full">
-                                <#if !realm.loginWithEmailAllowed>${msg("username")}
-                                    <#elseif !realm.registrationEmailAsUsername>
-                                        <#--  ${msg("usernameOrEmail")}
-                                    <#else>  -->
-                                        ${msg("email")}
-                                </#if>
+                            class="text-sm font-medium w-full"
+                        >
+                            <#if !realm.loginWithEmailAllowed>${msg("username")}
+                                <#elseif !realm.registrationEmailAsUsername>
+                                    <#--  ${msg("usernameOrEmail")}
+                                <#else>  -->
+                                    ${msg("email")}
+                            </#if>
                         </label>
                     </div>
                     <div class="">
@@ -38,7 +39,8 @@
                             name="username"
                             class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
                             autofocus
-                            value="${(auth.attemptedUsername!'')}" aria-invalid="<#if messagesPerField.existsError('username')>true</#if>"
+                            value="${(auth.attemptedUsername!'')}"
+                            aria-invalid="<#if messagesPerField.existsError('username')>true</#if>"
                         />
                         <#if messagesPerField.existsError('username')>
                             <span

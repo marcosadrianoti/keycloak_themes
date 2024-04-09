@@ -5,7 +5,10 @@
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
             <div class="flex flex-col">
-                <img class="h-10 w-40" src="${url.resourcesPath}/img/lavajato_logo.png" alt="logo">
+                <img
+                    class="h-10 w-40"
+                    src="${url.resourcesPath}/img/lavajato_logo.png"
+                    alt="logo">
                 <span class="text-left mt-4 font-Jakarta text-xl font-semibold">
                     ${msg("loginAccountTitle")}
                 </span>
@@ -24,7 +27,9 @@
                             <div class="flex flex-col mb-4">
                                 <label
                                     for="username"
-                                    class="font-Jakarta font-medium text-sm">${msg("email")}
+                                    class="font-Jakarta font-medium text-sm"
+                                >
+                                    ${msg("email")}
                                 </label>
                                 <input
                                     tabindex="2"
@@ -114,7 +119,7 @@
                                         </label>
                                     </div>
                                 </#if>
-                                </div>
+                            </div>
                                 <#--  <div class="${properties.kcFormOptionsWrapperClass!}">
                                     <#if realm.resetPasswordAllowed>
                                         <span class="font-bold">
@@ -138,10 +143,11 @@
                                 name="credentialId"
                                 <#if auth.selectedCredential?has_content>
                                     value="${auth.selectedCredential}"
-                                </#if>/>
+                                </#if>
+                            />
                             <input
                                 tabindex="7"
-                                class="mb-4 bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
+                                class="bg-emerald-500 self-stretch rounded-md h-10 w-full font-Jakarta text-sm font-medium text-white"
                                 name="login"
                                 id="kc-login"
                                 type="submit"
@@ -150,17 +156,16 @@
                         </div>
                     </form>
                     <div class="flex flex-col items-center justify-center w-full mt-4">
-                                <a
-                                    tabindex="8"
-                                    class="no-underline hover:no-underline hover:text-black w-full bg-white rounded-md border border-gray-200 h-10 content-center text-center font-Jakarta text-sm font-medium"
-                                    href="${url.loginResetCredentialsUrl}"
-                                >
-                                    ${msg("doForgotPassword")}
-                                </a>
-                            </div>
-                    <hr class="h-px bg-gray-200 border-0">
+                        <a
+                            tabindex="8"
+                            class="no-underline hover:no-underline hover:text-black w-full bg-white rounded-md border border-gray-200 h-10 content-center text-center font-Jakarta text-sm font-medium"
+                            href="${url.loginResetCredentialsUrl}"
+                        >
+                            ${msg("doForgotPassword")}
+                        </a>
+                    </div>
+                    <hr class="h-px mt-4 bg-gray-200 border-0">
                 </#if>
-                </div>
             </div>
             
             <script
@@ -175,13 +180,17 @@
                     <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                         <#list social.providers as p>
                             <li class="flex items-center justify-center font-Jakarta text-sm gap-5">
-                                <span class="text-sm font-medium text-gray-500">${msg("identity-provider-login-label")}</span>
+                                <span class="text-sm font-medium text-gray-500">
+                                    ${msg("identity-provider-login-label")}
+                                </span>
                                 <a
-                                    class="no-underline hover:no-underline" id="social-${p.alias}"
+                                    class="no-underline hover:no-underline"
+                                    id="social-${p.alias}"
                                     <#if social.providers?size gt 3>
                                         ${properties.kcFormSocialAccountGridItem!}
                                     </#if>"
-                                    type="button" href="${p.loginUrl}"
+                                    type="button"
+                                    href="${p.loginUrl}"
                                 >
                                     <#if p.iconClasses?has_content>
                                         <div
@@ -190,7 +199,9 @@
                                                 src="${url.resourcesPath}/img/google.svg"
                                                 alt="google"
                                             >
-                                            <span class="font-bold">${p.displayName!}</span>
+                                            <span class="font-bold">
+                                                ${p.displayName!}
+                                            </span>
                                         </div>
                                     <#else>
                                         <span class="${properties.kcFormSocialAccountNameClass!}">
