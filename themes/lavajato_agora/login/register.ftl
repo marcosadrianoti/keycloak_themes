@@ -37,15 +37,9 @@
             <form id="kc-register-form" class="${properties.kcFormClass!} mb-0" action="${url.registrationAction}" method="post">
 
                 <@userProfileCommons.userProfileFormFields; callback, attribute>
-                <#--  <@userProfileCommons.displayAttribute; callback, attribute>  -->
-                    <#--  <span>callback é ${callback} </span>  -->
                     <#if callback == "afterField">
                     <#-- render password fields just under the username or email (if used as username) -->
                         <#if passwordRequired?? && (attribute.name == 'email' || (attribute.name == 'email' && realm.registrationEmailAsUsername))>
-                        <#--  <#if attribute.name == 'lastName'>  -->
-
-                            <#--  <span>${attribute.name} se for lastName</span>  -->
-
                             <div class="${properties.kcFormGroupClass!}">
                                 <div class="${properties.kcLabelWrapperClass!}">
                                     <label for="password" class="${properties.kcLabelClass!}">${msg("passwordCreateNew")}</label>
@@ -56,6 +50,7 @@
                                             type="text"
                                             id="password"
                                             class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
+                                            name="password"
                                             autocomplete="new-password"
                                             aria-invalid="<#if messagesPerField.existsError('password','password-confirm')>true</#if>"
                                         />
