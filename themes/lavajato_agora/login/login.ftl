@@ -5,8 +5,8 @@
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
             <div class="flex flex-col">
-                <img class="h-10 w-40" src="${url.resourcesPath}/img/logo.png" alt="logo">
-                <span class="text-left mt-4 mb-4 font-Jakarta text-xl font-semibold">
+                <img class="h-10 w-40" src="${url.resourcesPath}/img/lavajato_logo.png" alt="logo">
+                <span class="text-left mt-4 font-Jakarta text-xl font-semibold">
                     ${msg("loginAccountTitle")}
                 </span>
             </div>
@@ -115,7 +115,7 @@
                                     </div>
                                 </#if>
                                 </div>
-                                <div class="${properties.kcFormOptionsWrapperClass!}">
+                                <#--  <div class="${properties.kcFormOptionsWrapperClass!}">
                                     <#if realm.resetPasswordAllowed>
                                         <span class="font-bold">
                                             <a
@@ -127,7 +127,7 @@
                                             </a>
                                         </span>
                                     </#if>
-                                </div>
+                                </div>  -->
 
                         </div>
 
@@ -149,6 +149,15 @@
                             />
                         </div>
                     </form>
+                    <div class="flex flex-col items-center justify-center w-full mt-4">
+                                <a
+                                    tabindex="8"
+                                    class="no-underline hover:no-underline hover:text-black w-full bg-white rounded-md border border-gray-200 h-10 content-center text-center font-Jakarta text-sm font-medium"
+                                    href="${url.loginResetCredentialsUrl}"
+                                >
+                                    ${msg("doForgotPassword")}
+                                </a>
+                            </div>
                     <hr class="h-px bg-gray-200 border-0">
                 </#if>
                 </div>
@@ -166,7 +175,7 @@
                     <ul class="${properties.kcFormSocialAccountListClass!} <#if social.providers?size gt 3>${properties.kcFormSocialAccountListGridClass!}</#if>">
                         <#list social.providers as p>
                             <li class="flex items-center justify-center font-Jakarta text-sm gap-5">
-                                <span class="text-sm font-medium">${msg("identity-provider-login-label")}</span>
+                                <span class="text-sm font-medium text-gray-500">${msg("identity-provider-login-label")}</span>
                                 <a
                                     class="no-underline hover:no-underline" id="social-${p.alias}"
                                     <#if social.providers?size gt 3>
