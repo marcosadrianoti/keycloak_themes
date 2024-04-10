@@ -4,12 +4,6 @@
 
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
-            <div class="flex flex-col items-center justify-center">
-                <img
-                    class="h-10 w-40 mb-8"
-                    src="${url.resourcesPath}/img/lavajato_logo.png"
-                    alt="logo">
-            </div>
             <span class="text-left font-Jakarta text-xl font-semibold">
                 ${msg("loginAccountTitle")}
             </span>
@@ -63,22 +57,35 @@
                                 ${msg("password")}
                             </label>
 
-                            <div class="${properties.kcInputGroup!}">
+                            <div class="relative">
                                 <input
                                     tabindex="3"
                                     id="password"
-                                    class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 px-3 h-9"
+                                    class="font-Jakarta rounded-md border border-gray-200 py-2 pl-2 pr-7 h-9 w-full "
                                     name="password"
-                                    type="text"
+                                    type="password"
                                     autocomplete="current-password"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
-                                <#--  <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg("showPassword")}"
-                                        aria-controls="password" data-password-toggle tabindex="4"
-                                        data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
-                                        data-label-show="${msg('showPassword')}" data-label-hide="${msg('hidePassword')}">
-                                    <i class="${properties.kcFormPasswordVisibilityIconShow!}" aria-hidden="true"></i>
-                                </button>  -->
+                                <#--  <i class="${properties.kcFormPasswordVisibilityIconShow!} absolute" aria-hidden="true"></i>  -->
+                                <button
+                                    class="absolute right-2 h-9 w-5"
+                                    type="button"
+                                    aria-label="${msg("showPassword")}"
+                                    aria-controls="password"
+                                    data-password-toggle
+                                    tabindex="4"
+                                    data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}"
+                                    data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
+                                    data-label-show="${msg('showPassword')}"
+                                    data-label-hide="${msg('hidePassword')}"
+                                >
+                                    <i
+                                        class="${properties.kcFormPasswordVisibilityIconShow!}"
+                                        aria-hidden="true"
+                                    >
+                                    </i>
+                                </button>
                             </div>
 
                             <#if usernameHidden?? && messagesPerField.existsError('username','password')>

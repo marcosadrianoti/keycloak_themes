@@ -3,12 +3,6 @@
 <div class="flex h-screen font-Jakarta">
     <@layout.registrationLayout displayInfo=true displayMessage=!messagesPerField.existsError('username'); section>
         <#if section = "header">
-            <div class="flex flex-col items-center justify-center">
-                <img
-                    class="h-10 w-40 mb-8"
-                    src="${url.resourcesPath}/img/lavajato_logo.png"
-                    alt="logo">
-            </div>
             <div class="flex flex-col gap-4">
                 <h1 class="text-xl font-semibold">
                     ${msg("emailForgotTitle")}

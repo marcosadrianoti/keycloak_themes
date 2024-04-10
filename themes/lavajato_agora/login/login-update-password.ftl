@@ -4,12 +4,6 @@
 <div class="flex flex-col min-h-screen items-center justify-center mb-0 font-Jakarta font-semibold text-base">
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('password','password-confirm'); section>
         <#if section = "header">
-            <div class="flex flex-col items-center justify-center">
-                <img
-                    class="h-10 w-40 mb-8"
-                    src="${url.resourcesPath}/img/lavajato_logo.png"
-                    alt="logo">
-            </div>
             <span class="text-xl font-semibold">
                 ${msg("updatePasswordTitle")}
             </span>

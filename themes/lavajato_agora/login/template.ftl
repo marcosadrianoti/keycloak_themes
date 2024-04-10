@@ -102,6 +102,12 @@
             <div class="flex flex-col items-center justify-center w-full">
                 <div class="mx-auto p-8 max-w-lg rounded-lg bg-gray-50 w-1/3">
                     <header class="mb-0">
+                        <div class="flex flex-col items-center justify-center">
+                            <img
+                                class="h-10 w-40 mb-8"
+                                src="${url.resourcesPath}/img/lavajato_logo.png"
+                                alt="logo">
+                        </div>
                         <#if realm.internationalizationEnabled  && locale.supported?size gt 1>
                             <div
                                 class="${properties.kcLocaleMainClass!}"
