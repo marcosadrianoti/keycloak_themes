@@ -4,7 +4,9 @@
 <div class="flex flex-col min-h-screen items-center justify-center mb-0 font-Jakarta font-semibold text-base">
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('password','password-confirm'); section>
         <#if section = "header">
-            <span class="text-xl font-semibold">${msg("updatePasswordTitle")}</span>
+            <span class="text-xl font-semibold">
+                ${msg("updatePasswordTitle")}
+            </span>
         <#elseif section = "form">
             <form
                 id="kc-passwd-update-form"
@@ -24,7 +26,7 @@
                     <div class="${properties.kcInputWrapperClass!}">
                         <div class="${properties.kcInputGroup!}">
                             <input
-                                type="password"
+                                type="text"
                                 id="password-new"
                                 name="password-new"
                                 class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 px-3 h-9"
@@ -74,7 +76,7 @@
                     <div class="${properties.kcInputWrapperClass!}">
                         <div class="${properties.kcInputGroup!}">
                             <input
-                                type="password"
+                                type="text"
                                 id="password-confirm"
                                 name="password-confirm"
                                 class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 px-3 h-9"

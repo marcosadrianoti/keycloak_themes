@@ -1,112 +1,15 @@
-<#macro displayAttribute attribute>
-		
-		<#assign group = (attribute.group)!"">
-		<#if group != currentGroup>
-			<#assign currentGroup=group>
-			<#if currentGroup != "">
-				<div class="${properties.kcFormGroupClass!}"
-				<#list group.html5DataAnnotations as key, value>
-					data-${key}="${value}"
-				</#list>
-				>
-				
-	
-					<#assign groupDisplayHeader=group.displayHeader!"">
-					<#if groupDisplayHeader != "">
-						<#assign groupHeaderText=advancedMsg(groupDisplayHeader)!group>
-					<#else>
-						<#assign groupHeaderText=group.name!"">
-					</#if>
-					<div class="${properties.kcContentWrapperClass!}">
-					
-						<label id="header-${attribute.group.name}" class="${kcFormGroupHeader!}">${groupHeaderText}</label>
-					</div>
-	
-					<#assign groupDisplayDescription=group.displayDescription!"">
-					<#if groupDisplayDescription != "">
-						<#assign groupDescriptionText=advancedMsg(groupDisplayDescription)!"">
-						<div class="${properties.kcLabelWrapperClass!}">
-							<label id="description-${group.name}" class="${properties.kcLabelClass!}">${groupDescriptionText}</label>
-						</div>
-					</#if>
-				</div>
-			</#if>
-		</#if>
-
-		<#nested "beforeField" attribute>
-
-		<div class="${properties.kcFormGroupClass!}">
-			<div class="${properties.kcLabelWrapperClass!}">
-				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
-				<#--  <#if attribute.required>*</#if>  -->
-			</div>
-			<div class="${properties.kcInputWrapperClass!}">
-				<#if attribute.annotations.inputHelperTextBefore??>
-					<div class="${properties.kcInputHelperTextBeforeClass!}" id="form-help-text-before-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextBefore))?no_esc}</div>
-				</#if>
-				<@inputFieldByType attribute=attribute/>
-				<#if messagesPerField.existsError('${attribute.name}')>
-					<span id="input-error-${attribute.name}" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
-						${kcSanitize(messagesPerField.get('${attribute.name}'))?no_esc}
-					</span>
-				</#if>
-				<#if attribute.annotations.inputHelperTextAfter??>
-					<div class="${properties.kcInputHelperTextAfterClass!}" id="form-help-text-after-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextAfter))?no_esc}</div>
-				</#if>
-			</div>
-		</div>
-
-		<#--  <#nested "afterField" attribute>  -->
-	<#--  </#if>  -->
-	
-</#macro>
-
-<#macro userProfileFormFields_new>
-	<#assign currentGroup="">
-	<#list profile.attributes as attribute>
-		<#if attribute.name == "username"> 
-			<@displayAttribute attribute=attribute/>
-			<#nested "afterField" attribute>
-		</#if>
-	</#list>
-	<#list profile.attributes as attribute>
-		<#if attribute.name == "firstName"> 
-			<@displayAttribute attribute=attribute/>
-			<#nested "afterField" attribute>
-		</#if>
-	</#list>
-	<#list profile.attributes as attribute>
-		<#if attribute.name == "lastName"> 
-			<@displayAttribute attribute=attribute/>
-			<#nested "afterField" attribute>
-		</#if>
-	</#list>
-	<#list profile.attributes as attribute>
-		<#if attribute.name == "email"> 
-			<@displayAttribute attribute=attribute/>
-			<#nested "afterField" attribute>
-		</#if>
-	</#list>
-	<#list profile.html5DataAnnotations?keys as key>
-		<script type="module" src="${url.resourcesPath}/js/${key}.js"></script>
-	</#list>
-</#macro>
-
 <#macro userProfileFormFields>
 	<#assign currentGroup="">
 	<#list profile.attributes as attribute>
 		<#assign group = (attribute.group)!"">
 		<#if group != currentGroup>
-		
 			<#assign currentGroup=group>
 			<#if currentGroup != "">
 				<div class="${properties.kcFormGroupClass!}"
-				<#list group.html5DataAnnotations as key, value>
-					data-${key}="${value}"
-				</#list>
+					<#list group.html5DataAnnotations as key, value>
+						data-${key}="${value}"
+					</#list>
 				>
-				
-	
 					<#assign groupDisplayHeader=group.displayHeader!"">
 					<#if groupDisplayHeader != "">
 						<#assign groupHeaderText=advancedMsg(groupDisplayHeader)!group>
@@ -115,14 +18,24 @@
 					</#if>
 					<div class="${properties.kcContentWrapperClass!}">
 					
-						<label id="header-${attribute.group.name}" class="${kcFormGroupHeader!}">${groupHeaderText}</label>
+						<label
+							id="header-${attribute.group.name}"
+							class="${kcFormGroupHeader!}"
+						>
+							${groupHeaderText}
+						</label>
 					</div>
 	
 					<#assign groupDisplayDescription=group.displayDescription!"">
 					<#if groupDisplayDescription != "">
 						<#assign groupDescriptionText=advancedMsg(groupDisplayDescription)!"">
 						<div class="${properties.kcLabelWrapperClass!}">
-							<label id="description-${group.name}" class="${properties.kcLabelClass!}">${groupDescriptionText}</label>
+							<label
+								id="description-${group.name}"
+								class="${properties.kcLabelClass!}"
+							>
+								${groupDescriptionText}
+							</label>
 						</div>
 					</#if>
 				</div>
@@ -132,21 +45,42 @@
 
 		<div class="${properties.kcFormGroupClass!}">
 			<div class="${properties.kcLabelWrapperClass!}">
-				<label for="${attribute.name}" class="${properties.kcLabelClass!}">${advancedMsg(attribute.displayName!'')}</label>
+				<label
+					for="${attribute.name}"
+					class="${properties.kcLabelClass!}"
+				>
+					${advancedMsg(attribute.displayName!'')}
+				</label>
 				<#--  <#if attribute.required>*</#if>  -->
 			</div>
 			<div class="${properties.kcInputWrapperClass!}">
 				<#if attribute.annotations.inputHelperTextBefore??>
-					<div class="${properties.kcInputHelperTextBeforeClass!}" id="form-help-text-before-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextBefore))?no_esc}</div>
+					<div
+						class="${properties.kcInputHelperTextBeforeClass!}"
+						id="form-help-text-before-${attribute.name}"
+						aria-live="polite"
+					>
+						${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextBefore))?no_esc}
+					</div>
 				</#if>
 				<@inputFieldByType attribute=attribute/>
 				<#if messagesPerField.existsError('${attribute.name}')>
-					<span id="input-error-${attribute.name}" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
+					<span
+						id="input-error-${attribute.name}"
+						class="${properties.kcInputErrorMessageClass!}"
+						aria-live="polite"
+					>
 						${kcSanitize(messagesPerField.get('${attribute.name}'))?no_esc}
 					</span>
 				</#if>
 				<#if attribute.annotations.inputHelperTextAfter??>
-					<div class="${properties.kcInputHelperTextAfterClass!}" id="form-help-text-after-${attribute.name}" aria-live="polite">${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextAfter))?no_esc}</div>
+					<div
+						class="${properties.kcInputHelperTextAfterClass!}"
+						id="form-help-text-after-${attribute.name}"
+						aria-live="polite"
+					>
+						${kcSanitize(advancedMsg(attribute.annotations.inputHelperTextAfter))?no_esc}
+					</div>
 				</#if>
 			</div>
 		</div>
@@ -156,7 +90,11 @@
 	</#list>
 
 	<#list profile.html5DataAnnotations?keys as key>
-		<script type="module" src="${url.resourcesPath}/js/${key}.js"></script>
+		<script
+			type="module"
+			src="${url.resourcesPath}/js/${key}.js"
+		>
+		</script>
 	</#list>
 </#macro>
 
@@ -193,16 +131,36 @@
 		class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
 		aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
 		<#if attribute.readOnly>disabled</#if>
-		<#if attribute.autocomplete??>autocomplete="${attribute.autocomplete}"</#if>
-		<#if attribute.annotations.inputTypePlaceholder??>placeholder="${attribute.annotations.inputTypePlaceholder}"</#if>
-		<#if attribute.annotations.inputTypePattern??>pattern="${attribute.annotations.inputTypePattern}"</#if>
-		<#if attribute.annotations.inputTypeSize??>size="${attribute.annotations.inputTypeSize}"</#if>
-		<#if attribute.annotations.inputTypeMaxlength??>maxlength="${attribute.annotations.inputTypeMaxlength}"</#if>
-		<#if attribute.annotations.inputTypeMinlength??>minlength="${attribute.annotations.inputTypeMinlength}"</#if>
-		<#if attribute.annotations.inputTypeMax??>max="${attribute.annotations.inputTypeMax}"</#if>
-		<#if attribute.annotations.inputTypeMin??>min="${attribute.annotations.inputTypeMin}"</#if>
-		<#if attribute.annotations.inputTypeStep??>step="${attribute.annotations.inputTypeStep}"</#if>
-		<#if attribute.annotations.inputTypeStep??>step="${attribute.annotations.inputTypeStep}"</#if>
+		<#if attribute.autocomplete??>
+			autocomplete="${attribute.autocomplete}"
+		</#if>
+		<#if attribute.annotations.inputTypePlaceholder??>
+			placeholder="${attribute.annotations.inputTypePlaceholder}"
+		</#if>
+		<#if attribute.annotations.inputTypePattern??>
+			pattern="${attribute.annotations.inputTypePattern}"
+		</#if>
+		<#if attribute.annotations.inputTypeSize??>
+			size="${attribute.annotations.inputTypeSize}"
+		</#if>
+		<#if attribute.annotations.inputTypeMaxlength??>
+			maxlength="${attribute.annotations.inputTypeMaxlength}"
+		</#if>
+		<#if attribute.annotations.inputTypeMinlength??>
+			minlength="${attribute.annotations.inputTypeMinlength}"
+		</#if>
+		<#if attribute.annotations.inputTypeMax??>
+			max="${attribute.annotations.inputTypeMax}"
+		</#if>
+		<#if attribute.annotations.inputTypeMin??>
+			min="${attribute.annotations.inputTypeMin}"
+		</#if>
+		<#if attribute.annotations.inputTypeStep??>
+			step="${attribute.annotations.inputTypeStep}"
+		</#if>
+		<#if attribute.annotations.inputTypeStep??>
+			step="${attribute.annotations.inputTypeStep}"
+		</#if>
 		<#list attribute.html5DataAnnotations as key, value>
     		data-${key}="${value}"
 		</#list>
@@ -211,34 +169,56 @@
 
 <#macro inputTagType attribute>
 	<#compress>
-	<#if attribute.annotations.inputType??>
-		<#if attribute.annotations.inputType?starts_with("html5-")>
-			${attribute.annotations.inputType[6..]}
+		<#if attribute.annotations.inputType??>
+			<#if attribute.annotations.inputType?starts_with("html5-")>
+				${attribute.annotations.inputType[6..]}
+			<#else>
+				${attribute.annotations.inputType}
+			</#if>
 		<#else>
-			${attribute.annotations.inputType}
+			text
 		</#if>
-	<#else>
-	text
-	</#if>
 	</#compress>
 </#macro>
 
 <#macro textareaTag attribute>
-	<textarea id="${attribute.name}" name="${attribute.name}" class="${properties.kcInputClass!}"
+	<textarea
+		id="${attribute.name}"
+		name="${attribute.name}"
+		class="${properties.kcInputClass!}"
 		aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
-		<#if attribute.readOnly>disabled</#if>
-		<#if attribute.annotations.inputTypeCols??>cols="${attribute.annotations.inputTypeCols}"</#if>
-		<#if attribute.annotations.inputTypeRows??>rows="${attribute.annotations.inputTypeRows}"</#if>
-		<#if attribute.annotations.inputTypeMaxlength??>maxlength="${attribute.annotations.inputTypeMaxlength}"</#if>
-	>${(attribute.value!'')}</textarea>
+		<#if attribute.readOnly>
+			disabled
+		</#if>
+		<#if attribute.annotations.inputTypeCols??>
+			cols="${attribute.annotations.inputTypeCols}"
+		</#if>
+		<#if attribute.annotations.inputTypeRows??>
+			rows="${attribute.annotations.inputTypeRows}"
+		</#if>
+		<#if attribute.annotations.inputTypeMaxlength??>
+			maxlength="${attribute.annotations.inputTypeMaxlength}"
+		</#if>
+	>
+		${(attribute.value!'')}
+	</textarea>
 </#macro>
 
 <#macro selectTag attribute>
-	<select id="${attribute.name}" name="${attribute.name}" class="${properties.kcInputClass!}"
+	<select
+		id="${attribute.name}"
+		name="${attribute.name}"
+		class="${properties.kcInputClass!}"
 		aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
-		<#if attribute.readOnly>disabled</#if>
-		<#if attribute.annotations.inputType=='multiselect'>multiple</#if>
-		<#if attribute.annotations.inputTypeSize??>size="${attribute.annotations.inputTypeSize}"</#if>
+		<#if attribute.readOnly>
+			disabled
+		</#if>
+		<#if attribute.annotations.inputType=='multiselect'>
+			multiple
+		</#if>
+		<#if attribute.annotations.inputTypeSize??>
+			size="${attribute.annotations.inputTypeSize}"
+		</#if>
 	>
 	<#if attribute.annotations.inputType=='select'>
 		<option value=""></option>
@@ -253,7 +233,13 @@
 	</#if>
 
 	<#list options as option>
-		<option value="${option}" <#if attribute.values?seq_contains(option)>selected</#if>><@selectOptionLabelText attribute=attribute option=option/></option>
+		<option
+			value="${option}"
+			<#if attribute.values?seq_contains(option)>
+				selected
+			</#if>>
+			<@selectOptionLabelText attribute=attribute option=option/>
+		</option>
 	</#list>
 
 	</select>
@@ -282,12 +268,24 @@
 
 	<#list options as option>
 		<div class="${classDiv}">
-			<input type="${inputType}" id="${attribute.name}-${option}" name="${attribute.name}" value="${option}" class="${classInput}"
+			<input
+				type="${inputType}"
+				id="${attribute.name}-${option}"
+				name="${attribute.name}"
+				value="${option}"
+				class="${classInput}"
 				aria-invalid="<#if messagesPerField.existsError('${attribute.name}')>true</#if>"
-				<#if attribute.readOnly>disabled</#if>
-				<#if attribute.values?seq_contains(option)>checked</#if>
+				<#if attribute.readOnly>
+					disabled
+				</#if>
+				<#if attribute.values?seq_contains(option)>
+					checked
+				</#if>
 			/>
-			<label for="${attribute.name}-${option}" class="${classLabel}<#if attribute.readOnly> ${properties.kcInputClassRadioCheckboxLabelDisabled!}</#if>"><@selectOptionLabelText attribute=attribute option=option/></label>
+			<label
+				for="${attribute.name}-${option}"
+				class="${classLabel}<#if attribute.readOnly> ${properties.kcInputClassRadioCheckboxLabelDisabled!}</#if>"><@selectOptionLabelText attribute=attribute option=option/>
+			</label>
 		</div>
 	</#list>
 </#macro>
