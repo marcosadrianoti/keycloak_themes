@@ -194,7 +194,7 @@
                                 >
                                     <#if p.iconClasses?has_content>
                                         <div
-                                            class="h-12 px-4 bg-white flex items-center justify-center rounded-lg border border-gray-200 gap-2">
+                                            class="h-10 px-4 bg-white flex items-center justify-center rounded-lg border border-gray-200 gap-2">
                                             <img
                                                 src="${url.resourcesPath}/img/google.svg"
                                                 alt="google"
