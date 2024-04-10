@@ -284,7 +284,9 @@
 			/>
 			<label
 				for="${attribute.name}-${option}"
-				class="${classLabel}<#if attribute.readOnly> ${properties.kcInputClassRadioCheckboxLabelDisabled!}</#if>"><@selectOptionLabelText attribute=attribute option=option/>
+				class="${classLabel}<#if attribute.readOnly> ${properties.kcInputClassRadioCheckboxLabelDisabled!}</#if>"
+			>
+				<@selectOptionLabelText attribute=attribute option=option/>
 			</label>
 		</div>
 	</#list>

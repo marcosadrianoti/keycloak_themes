@@ -4,15 +4,15 @@
 
     <@layout.registrationLayout displayMessage=!messagesPerField.existsError('username','password') displayInfo=realm.password && realm.registrationAllowed && !registrationDisabled??; section>
         <#if section = "header">
-            <div class="flex flex-col">
+            <div class="flex flex-col items-center justify-center">
                 <img
-                    class="h-10 w-40"
+                    class="h-10 w-40 mb-8"
                     src="${url.resourcesPath}/img/lavajato_logo.png"
                     alt="logo">
-                <span class="text-left mt-4 font-Jakarta text-xl font-semibold">
-                    ${msg("loginAccountTitle")}
-                </span>
             </div>
+            <span class="text-left font-Jakarta text-xl font-semibold">
+                ${msg("loginAccountTitle")}
+            </span>
             
         <#elseif section = "form">
             <div id="kc-form" >
