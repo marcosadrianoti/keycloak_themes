@@ -61,17 +61,16 @@
                                 <input
                                     tabindex="3"
                                     id="password"
-                                    class="font-Jakarta rounded-md border border-gray-200 py-2 pl-2 pr-7 h-9 w-full "
+                                    class="font-Jakarta rounded-md border border-gray-200 py-2 pl-2 pr-7 h-9 w-full"
                                     name="password"
                                     type="password"
                                     autocomplete="current-password"
                                     aria-invalid="<#if messagesPerField.existsError('username','password')>true</#if>"
                                 />
-                                <#--  <i class="${properties.kcFormPasswordVisibilityIconShow!} absolute" aria-hidden="true"></i>  -->
                                 <button
                                     class="absolute right-2 h-9 w-5"
                                     type="button"
-                                    aria-label="${msg("showPassword")}"
+                                    aria-label="${msg('showPassword')}"
                                     aria-controls="password"
                                     data-password-toggle
                                     tabindex="4"
@@ -140,7 +139,6 @@
                                         </span>
                                     </#if>
                                 </div>  -->
-
                         </div>
 
                         <div class="mt-0">

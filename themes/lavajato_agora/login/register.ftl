@@ -73,21 +73,32 @@
                                     </label>
                                 </div>
                                 <div class="${properties.kcInputWrapperClass!}">
-                                    <div class="${properties.kcInputGroup!}">
+                                    <div class="relative">
                                         <input
-                                            type="text"
+                                            type="password"
                                             id="password"
-                                            class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
+                                            class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 pl-2 pr-7 h-9 w-full"
                                             name="password"
                                             autocomplete="new-password"
                                             aria-invalid="<#if messagesPerField.existsError('password','password-confirm')>true</#if>"
                                         />
-                                        <#--  <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg('showPassword')}"
-                                                aria-controls="password"  data-password-toggle
-                                                data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
-                                                data-label-show="${msg('showPassword')}" data-label-hide="${msg('hidePassword')}">
-                                            <i class="${properties.kcFormPasswordVisibilityIconShow!}" aria-hidden="true"></i>
-                                        </button>  -->
+                                        <button
+                                            class="absolute right-2 h-9 w-5"
+                                            type="button"
+                                            aria-label="${msg('showPassword')}"
+                                            aria-controls="password"
+                                            data-password-toggle
+                                            data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}"
+                                            data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
+                                            data-label-show="${msg('showPassword')}"
+                                            data-label-hide="${msg('hidePassword')}"
+                                        >
+                                            <i
+                                                class="${properties.kcFormPasswordVisibilityIconShow!}"
+                                                aria-hidden="true"
+                                            >
+                                            </i>
+                                        </button>
                                     </div>
 
                                     <#if messagesPerField.existsError('password')>
@@ -112,20 +123,31 @@
                                     </label>
                                 </div>
                                 <div class="${properties.kcInputWrapperClass!}">
-                                    <div class="${properties.kcInputGroup!}">
+                                    <div class="relative">
                                         <input
-                                            type="text"
+                                            type="password"
                                             id="password-confirm"
-                                            class="rounded-md border border-gray-200 bg-white py-2 px-3 h-9 w-full"
+                                            class="font-Jakarta rounded-md border border-gray-200 bg-white py-2 pl-2 pr-7 h-9 w-full"
                                             name="password-confirm"
                                             aria-invalid="<#if messagesPerField.existsError('password-confirm')>true</#if>"
                                         />
-                                        <#--  <button class="${properties.kcFormPasswordVisibilityButtonClass!}" type="button" aria-label="${msg('showPassword')}"
-                                                aria-controls="password-confirm"  data-password-toggle
-                                                data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}" data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
-                                                data-label-show="${msg('showPassword')}" data-label-hide="${msg('hidePassword')}">
-                                            <i class="${properties.kcFormPasswordVisibilityIconShow!}" aria-hidden="true"></i>
-                                        </button>  -->
+                                        <button
+                                            class="absolute right-2 h-9 w-5"
+                                            type="button"
+                                            aria-label="${msg('showPassword')}"
+                                            aria-controls="password-confirm"
+                                            data-password-toggle
+                                            data-icon-show="${properties.kcFormPasswordVisibilityIconShow!}"
+                                            data-icon-hide="${properties.kcFormPasswordVisibilityIconHide!}"
+                                            data-label-show="${msg('showPassword')}"
+                                            data-label-hide="${msg('hidePassword')}"
+                                        >
+                                            <i
+                                                class="${properties.kcFormPasswordVisibilityIconShow!}"
+                                                aria-hidden="true"
+                                            >
+                                            </i>
+                                        </button>
                                     </div>
 
                                     <#if messagesPerField.existsError('password-confirm')>
